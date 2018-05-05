@@ -133,14 +133,13 @@ const orders = [
   Use a higher order method to get the sum of all the order totals after adding in the sales tax
 */
 
-let ordersTotal = orders
-  .map(function(order) {
-    return order.price * (order.tax + 1);
-    //[total1, total2, total3]
-  })
-  .reduce(function(curr, next) {
-    return curr + next;
-  }, 0);
+let ordersTotal = orders.map(function(order) {
+  return order.price * (order.tax + 1);
+  //[total1, total2, total3]
+});
+// .reduce(function(curr, next) {
+//   return (curr += next);
+// }, 0);
 // how to add the tax function
 //Code Here
 
@@ -176,7 +175,7 @@ const purchases = [
 */
 
 let bobsTotal = purchases
-  .map(function(purchase) {
+  .filter(function(purchase) {
     return purchase.owner == "Bob";
   })
   .reduce(function(curr, next) {

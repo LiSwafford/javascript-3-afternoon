@@ -61,19 +61,22 @@ class Employee {
 //Code Here
 
 class Manager extends Employee {
-  constructor(first_name, last_name, email, age, reports) {
+  constructor(first_name, last_name, email, age) {
     super(first_name, last_name, email, age);
-    this.reports = reports;
+    this.reports = [];
   }
   hire(employee) {
-    reports.push(newEmployee);
+    this.reports.push(employee);
   }
   fire(index) {
     // for (i = 0; i < reports.length; i++) {
-    reports.splice(index, 1);
+    this.reports.splice(index, 1);
     // }
   }
 }
+
+let bryce = new Manager("Bryce", "Hull", "bh@gmail.com", 25);
+console.log(bryce);
 
 ////////// PROBLEM 3 //////////
 
@@ -99,12 +102,33 @@ class Manager extends Employee {
 
 //Code Here
 
-// class ProgressiveManager extends Manager {
-//   constructor(title, bonus) {
-//     super(first_name, last_name, email, age, reports);
-//     this.title = "Not a manager";
-//     this.bonus = 0;
-// }
+class ProgressiveManager extends Manager {
+  constructor(first_name, last_name, email, age, reports, title, bonus) {
+    super(first_name, last_name, email, age, reports);
+    this.title = "Not a manager";
+    this.bonus = 0;
+    this.employeeArray = [];
+  }
+  hire(newEmployee) {
+    let newEmployeeList = [];
+    if (newEmployeeList.length === 0) {
+      this.title = "Not a manager";
+    } else if (newEmpooyeeList.length >= 1 && newEmpooyeeList.length <= 3) {
+      this.title = "Barely Manager";
+    } else if (newEmpooyeeList.length >= 4 && newEmpooyeeList.length <= 10) {
+      this.title = "Mostly Manager";
+    } else if (newEmpooyeeList.length >= 11 && newEmpooyeeList.length <= 50) {
+      this.title = "Manager";
+    } else if (newEmpooyeeList.length >= 51 && newEmpooyeeList.length <= 100) {
+      this.title = "Manager Plus";
+    } else {
+      this.title = "Bestest Manager";
+    }
+  }
+  addBonus(numOfFire) {
+    this.bonus += 100 * numOfFire;
+  }
+}
 
 ////////// PROBLEM 4 - Black Diamond //////////
 
@@ -130,3 +154,22 @@ class Manager extends Employee {
 */
 
 //Code Here
+class Machine {
+  constructor() {
+    this.widgets_made_count = 0;
+    this.wear_and_tear_count = 0;
+    this.needs_reboot = false;
+  }
+  makeWidgets(num) {
+    this.widgets_made_count += num;
+    this.wear_and_tear_count += num / 50;
+  }
+  fixMachine() {
+    this.needs_reboot = true;
+    this.reboot();
+  }
+  reboot() {
+    return () => (this.wear_and_tear_count -= 10);
+    this.needs_reboot = false;
+  }
+}
