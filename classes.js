@@ -107,28 +107,75 @@ class ProgressiveManager extends Manager {
     super(first_name, last_name, email, age, reports);
     this.title = "Not a manager";
     this.bonus = 0;
-    this.employeeArray = [];
+    this.firedAndHiredCount = 0;
   }
-  hire(newEmployee) {
-    let newEmployeeList = [];
-    if (newEmployeeList.length === 0) {
+
+  updateStatus() {
+    if (this.firedAndHiredCount === 0) {
       this.title = "Not a manager";
-    } else if (newEmpooyeeList.length >= 1 && newEmpooyeeList.length <= 3) {
+    } else if (this.firedAndHiredCount >= 1 && this.firedAndHiredCount <= 3) {
       this.title = "Barely Manager";
-    } else if (newEmpooyeeList.length >= 4 && newEmpooyeeList.length <= 10) {
+    } else if (this.firedAndHiredCount >= 4 && this.firedAndHiredCount <= 10) {
       this.title = "Mostly Manager";
-    } else if (newEmpooyeeList.length >= 11 && newEmpooyeeList.length <= 50) {
+    } else if (this.firedAndHiredCount >= 11 && this.firedAndHiredCount <= 50) {
       this.title = "Manager";
-    } else if (newEmpooyeeList.length >= 51 && newEmpooyeeList.length <= 100) {
+    } else if (
+      this.firedAndHiredCount >= 51 &&
+      this.firedAndHiredCount <= 100
+    ) {
       this.title = "Manager Plus";
     } else {
       this.title = "Bestest Manager";
     }
   }
-  addBonus(numOfFire) {
-    this.bonus += 100 * numOfFire;
+  hire(employee) {
+    super.hire(employee);
+    this.firedAndHiredCount++;
+    this.updateStatus();
+  }
+
+  fire(index) {
+    super.fire(index);
+    this.firedAndHiredCount++;
+    this.updateStatus();
+    this.bonus += 100;
   }
 }
+//this.firedAndHiredCount = 0;
+// let Li = new ProgressiveManager(
+//   "Li",
+//   "Swafford",
+//   "email@email.com",
+//   21,
+//   [],
+//   "manager",
+//   "25000"
+// );
+// console.log(Li);
+
+// let Brandon = new ProgressiveManager(
+//   "Brandon",
+//   "Chung",
+//   "email@email.com",
+//   21,
+//   [],
+//   "manager",
+//   "25000"
+// );
+// //this.firedAndHiredCount = 1;
+// //this.title = "Barely Manager";
+// // Li.hire("Brandon");
+// console.log(Brandon);
+// Brandon.hire("someone");
+// Brandon.hire("someone");
+// Brandon.hire("someone");
+// Brandon.hire("someone");
+// Brandon.hire("someone");
+// Brandon.hire("someone");
+// Brandon.hire("someone");
+// Brandon.hire("someone");
+// Brandon.hire("someone");
+// //
 
 ////////// PROBLEM 4 - Black Diamond //////////
 
